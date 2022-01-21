@@ -20,7 +20,7 @@ class Query:
 
     def __init__(self):
         self.base_url = "https://earthquake.usgs.gov/fdsnws/event/1/"
-        self.method = "query" # the 3 endpoint will only use the query method
+        self.method = "query" # the 3 endpoints will only use the query method
         self.format = "geojson" # I want to get only in json format
 
     # Do the requested query
@@ -44,37 +44,3 @@ if __name__ == "__main__":
     new = Query()
     data = new.get_json_data(starttime="2014-01-01", endtime="2014-01-02", minmagnitude="2.0")
     pprint.pprint(data)
-
-"""
-# TESTING
-
-url = "http://jsonplaceholder.typicode.com/users"
-
-user = input("Search by username: ")
-queryURL = f"{url}?username={user}"
-
-r = requests.get(queryURL)
-
-userdata = json.loads(r.text)[0]
-
-print(f"Name = {userdata['name']}")
-print(f"Email = {userdata['email']}")
-"""
-
-"""
-Useful things Requests
-
-payload = {'key1': 'value1', 'key2': 'value2'}
-r = requests.get('https://httpbin.org/get', params=payload)
-
-r.url
-
-payload = {'key1': 'value1', 'key2': ['value2', 'value3']}
-
-r = requests.get('https://httpbin.org/get', params=payload)
-print(r.url)
-https://httpbin.org/get?key1=value1&key2=value2&key2=value3
-
-
-
-"""
