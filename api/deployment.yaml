@@ -22,7 +22,7 @@ spec:
   selector:
     matchLabels:
       app: usgs
-  replicas: 3
+  replicas: 15
   template:
     metadata:
       labels:

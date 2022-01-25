@@ -6,7 +6,6 @@ import os
 
 
 # Info that all endpoints have in common
-format = "geojson"
 minmagnitude = "2.0"
 # For searching states
 states = {"AL":"Alabama", "AK":"Alaska","AZ":"Arizona","AR":"Arkansas",
@@ -40,7 +39,7 @@ def do_1st_endpoint():
     endtime = request.args.get("endtime")
 
     # Get data from the Request on the url
-    query = query_obj.get_json_data(format=format, starttime=starttime,
+    query = query_obj.get_json_data(starttime=starttime,
         endtime=endtime, minmagnitude=minmagnitude, maxlatitude=sf_coordinates["maxlatitude"],
         minlatitude=sf_coordinates["minlatitude"], maxlongitude=sf_coordinates["maxlongitude"],
         minlongitude=sf_coordinates["minlongitude"])
@@ -65,7 +64,7 @@ def do_2nd_endpoint():
     endtime = request.args.get("endtime")
 
     # Get data from the Request on the url
-    query = query_obj.get_json_data(format=format, starttime=starttime,
+    query = query_obj.get_json_data(starttime=starttime,
         endtime=endtime, minmagnitude=minmagnitude, maxlatitude=sf_coordinates["maxlatitude"],
         minlatitude=sf_coordinates["minlatitude"], maxlongitude=sf_coordinates["maxlongitude"],
         minlongitude=sf_coordinates["minlongitude"], minfelt=10)
@@ -98,7 +97,7 @@ def do_3rd_endpoint():
     endtime = today.strftime('%Y-%m-%d')
 
     # Get data from the Request on the url
-    query = query_obj.get_json_data(format=format, starttime=starttime,
+    query = query_obj.get_json_data(starttime=starttime,
             endtime=endtime, minmagnitude=minmagnitude)
 
     data = json.loads(query)
@@ -141,7 +140,7 @@ def bonus():
     state = request.args.get("state")
 
     # Get data from the Request on the url
-    query = query_obj.get_json_data(format=format, starttime=starttime,
+    query = query_obj.get_json_data(starttime=starttime,
         endtime=endtime, minmagnitude=minmagnitude)
 
     data = json.loads(query)
@@ -170,7 +169,5 @@ def bonus():
     results = json.dumps(results, indent=2)
     return results
 
-
-# Do the Debugging
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
