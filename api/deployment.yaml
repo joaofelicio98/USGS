@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: usgs-service
+spec:
+  selector:
+    app: usgs
+  ports:
+  - protocol: "TCP"
+    port: 8080
+    targetPort: 5000
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usgs-deployment
+  labels:
+    app: usgs
+spec:
+  selector:
+    matchLabels:
+      app: usgs
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: usgs
+    spec:
+      containers:
+      - name: usgs
+        image: usgs:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000

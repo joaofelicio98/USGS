@@ -24,7 +24,7 @@ states = {"AL":"Alabama", "AK":"Alaska","AZ":"Arizona","AR":"Arkansas",
 
 # San Francisco Bay rectangular coordinates
 sf_coordinates = {"maxlatitude":38.294, "minlatitude":37.235,
-                        "maxlongitude":122.835, "minlongitude":121.675}
+                        "maxlongitude":-121.675, "minlongitude":-122.835}
 # Query object to make requests on USGS
 query_obj = Query()
 
